@@ -67,7 +67,20 @@ namespace Buoi07_TinhToan3
             if (radCong.Checked) kq = so1 + so2;
             else if (radTru.Checked) kq = so1 - so2;
             else if (radNhan.Checked) kq = so1 * so2;
-            else if (radChia.Checked && so2 != 0) kq = so1 / so2;
+            else if (radChia.Checked)
+            {
+                if(so2 == 0)
+                {
+                    MessageBox.Show("Khong chia duoc cho 0.");
+                    txtSo2.ResetText();
+                    txtSo2.Focus();
+                    return;
+                }
+                else
+                {
+                    kq = so1 / so2;
+                }
+            }
             //Hiển thị kết quả lên trên ô kết quả
             txtKq.Text = kq.ToString();
         }
