@@ -32,11 +32,36 @@ namespace Buoi07_TinhToan3
                 this.Close();
         }
 
+        private bool checkValue(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return false;
+            }
+            bool isNumeric = int.TryParse(value, out _);
+            return isNumeric; 
+        }
         private void btnTinh_Click(object sender, EventArgs e)
         {
-            //lấy giá trị của 2 ô số
+            // Lấy giá trị của 2 ô số
             double so1, so2, kq = 0;
+            // Kiểm tra giá trị ô số 1
+            if (!checkValue(txtSo1.Text))
+            {
+                MessageBox.Show("Giá trị ô số 1 không hợp lệ. Vui lòng nhập một số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSo1.Focus();
+                txtSo1.SelectAll();
+                return;
+            }
             so1 = double.Parse(txtSo1.Text);
+
+            if (!checkValue(txtSo2.Text))
+            {
+                MessageBox.Show("Giá trị ô số 2 không hợp lệ. Vui lòng nhập một số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSo2.Focus();
+                txtSo2.SelectAll();
+                return;
+            }
             so2 = double.Parse(txtSo2.Text);
             //Thực hiện phép tính dựa vào phép toán được chọn
             if (radCong.Checked) kq = so1 + so2;
